@@ -170,50 +170,144 @@ height: 1px;
 background: linear-gradient(90deg, #E0E0E0, transparent);
 }
 
-.photo-section {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 20px;
-margin-bottom: 32px;
-}
-
-.photo-panel {
+/* ROOM SELECTOR */
+.room-selector {
 border: 1px solid #E0E0E0;
 border-radius: 4px;
 overflow: hidden;
+margin-bottom: 24px;
 }
 
-.photo-panel-header {
-padding: 10px 16px;
-font-size: 11px;
+.room-selector-header {
+background: #007B8A;
+color: #ffffff;
+font-size: 10px;
 font-weight: bold;
-letter-spacing: 1px;
+letter-spacing: 2px;
 text-transform: uppercase;
+padding: 10px 20px;
+border-bottom: 2px solid #C9A84C;
+}
+
+.room-selector-header p {
+font-size: 11px;
+color: rgba(255,255,255,0.7);
+font-weight: normal;
+letter-spacing: 0;
+margin-top: 3px;
+text-transform: none;
+}
+
+.room-grid {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 8px;
+padding: 16px;
+background: #ffffff;
+}
+
+.room-check {
 display: flex;
 align-items: center;
 gap: 8px;
+padding: 8px 12px;
+background: #F5F5F5;
+border-radius: 4px;
+cursor: pointer;
+border: 1px solid transparent;
+transition: all 0.2s;
+user-select: none;
 }
 
-.photo-panel-header.before {
-background: #FFF3E0;
-color: #B45309;
-border-bottom: 2px solid #F59E0B;
+.room-check:hover { border-color: #007B8A; background: #E0F4F6; }
+.room-check.active { background: #E0F4F6; border-color: #007B8A; }
+
+.room-check-box {
+width: 16px;
+height: 16px;
+border: 2px solid #ccc;
+border-radius: 2px;
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #ffffff;
+transition: all 0.2s;
 }
 
-.photo-panel-header.after {
-background: #ECFDF5;
-color: #065F46;
-border-bottom: 2px solid #10B981;
+.room-check.active .room-check-box {
+background: #007B8A;
+border-color: #007B8A;
 }
 
-.dot-before { width:8px; height:8px; border-radius:50%; background:#F59E0B; flex-shrink:0; }
-.dot-after  { width:8px; height:8px; border-radius:50%; background:#10B981; flex-shrink:0; }
+.room-check.active .room-check-box::after {
+content: ‘✓’;
+font-size: 10px;
+color: white;
+font-weight: bold;
+}
 
-.photo-slots {
-padding: 12px;
+.room-check-label { font-size: 12px; color: #1A1A1A; line-height: 1.3; }
+
+/* ROOM PHOTO SECTIONS */
+.room-photos-container { margin-bottom: 32px; }
+
+.room-photo-section {
+border: 1px solid #E0E0E0;
+border-radius: 4px;
+overflow: hidden;
+margin-bottom: 16px;
+display: none;
+}
+
+.room-photo-section.visible { display: block; }
+
+.room-photo-header {
+background: #007B8A;
+color: #ffffff;
+font-size: 11px;
+font-weight: bold;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+padding: 10px 16px;
+border-bottom: 2px solid #C9A84C;
+}
+
+.room-photo-body {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 8px;
+gap: 0;
+}
+
+.room-photo-col {
+padding: 12px;
+}
+
+.room-photo-col:first-child {
+border-right: 1px solid #E0E0E0;
+}
+
+.room-photo-col-header {
+font-size: 10px;
+font-weight: bold;
+letter-spacing: 1px;
+text-transform: uppercase;
+padding: 6px 0 10px 0;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+
+.room-photo-col-header.before { color: #B45309; }
+.room-photo-col-header.after { color: #065F46; }
+
+.col-dot-before { width:7px; height:7px; border-radius:50%; background:#F59E0B; flex-shrink:0; }
+.col-dot-after  { width:7px; height:7px; border-radius:50%; background:#10B981; flex-shrink:0; }
+
+.photo-slots-sm {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6px;
 }
 
 .photo-slot {
@@ -240,8 +334,8 @@ height: 100%;
 object-fit: cover;
 }
 
-.photo-slot-icon { font-size: 20px; margin-bottom: 4px; }
-.photo-slot-label { font-size: 10px; color: #666; text-align: center; }
+.photo-slot-icon { font-size: 16px; margin-bottom: 2px; }
+.photo-slot-label { font-size: 9px; color: #666; text-align: center; line-height: 1.2; }
 .photo-slot.has-image .photo-slot-label,
 .photo-slot.has-image .photo-slot-icon { display: none; }
 
@@ -266,6 +360,7 @@ color: #666;
 background: transparent;
 }
 
+/* CONDITION NOTES */
 .notes-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
@@ -307,6 +402,7 @@ line-height: 1.6;
 flex: 1;
 }
 
+/* CHECKLIST */
 .checklist {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
@@ -357,6 +453,7 @@ font-weight: bold;
 
 .check-label { font-size: 12px; color: #1A1A1A; line-height: 1.3; }
 
+/* FLAGS */
 .flags-section {
 border: 1px solid #FEE2E2;
 border-radius: 4px;
@@ -390,6 +487,7 @@ line-height: 1.8;
 display: block;
 }
 
+/* RATING */
 .rating-row {
 display: flex;
 flex-direction: column;
@@ -430,6 +528,7 @@ padding-left: 12px;
 border-left: 2px solid #C9A84C;
 }
 
+/* SIGNATURES */
 .sig-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
@@ -489,6 +588,7 @@ flex: 1;
 background: transparent;
 }
 
+/* ACTIONS */
 .actions {
 display: flex;
 gap: 12px;
@@ -519,6 +619,7 @@ color: #007B8A;
 .btn-gold { background: #C9A84C; color: #ffffff; }
 .btn-gold:hover { background: #A8863A; }
 
+/* FOOTER */
 .footer {
 background: #007B8A;
 padding: 16px 48px;
@@ -559,7 +660,9 @@ body { background: white; padding: 0; }
 .body { padding: 24px; }
 .info-grid { grid-template-columns: 1fr; }
 .info-col:first-child { border-right: none; border-bottom: 1px solid #E0E0E0; }
-.photo-section { grid-template-columns: 1fr; }
+.room-grid { grid-template-columns: 1fr 1fr; }
+.room-photo-body { grid-template-columns: 1fr; }
+.room-photo-col:first-child { border-right: none; border-bottom: 1px solid #E0E0E0; }
 .notes-grid { grid-template-columns: 1fr; }
 .checklist { grid-template-columns: 1fr 1fr; }
 .sig-grid { grid-template-columns: 1fr; }
@@ -587,7 +690,7 @@ body { background: white; padding: 0; }
 
   <div class="body">
 
-
+```
 <div class="info-grid">
   <div class="info-col">
     <div class="info-col-header">Property &amp; Visit Details</div>
@@ -605,29 +708,188 @@ body { background: white; padding: 0; }
   </div>
 </div>
 
-<div class="section-header"><div class="section-dot"></div><div class="section-title">Before Photos</div><div class="section-line"></div></div>
+<!-- PHOTO SECTION -->
+<div class="section-header"><div class="section-dot"></div><div class="section-title">Photos by Room</div><div class="section-line"></div></div>
 
-<div class="photo-section">
-  <div class="photo-panel">
-    <div class="photo-panel-header before"><div class="dot-before"></div>Before Service — Upload Photos</div>
-    <div class="photo-slots">
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+<!-- ROOM SELECTOR -->
+<div class="room-selector">
+  <div class="room-selector-header">
+    Select Rooms Serviced
+    <p>Check each room that applies to this property</p>
+  </div>
+  <div class="room-grid">
+    <div class="room-check" onclick="toggleRoom(this, 'kitchen')"><div class="room-check-box"></div><span class="room-check-label">Kitchen</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'living')"><div class="room-check-box"></div><span class="room-check-label">Living Room</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'dining')"><div class="room-check-box"></div><span class="room-check-label">Dining Room</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'master')"><div class="room-check-box"></div><span class="room-check-label">Master Bedroom</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'bed2')"><div class="room-check-box"></div><span class="room-check-label">Bedroom 2</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'bed3')"><div class="room-check-box"></div><span class="room-check-label">Bedroom 3</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'bed4')"><div class="room-check-box"></div><span class="room-check-label">Bedroom 4</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'bath1')"><div class="room-check-box"></div><span class="room-check-label">Bathroom 1</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'bath2')"><div class="room-check-box"></div><span class="room-check-label">Bathroom 2</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'bath3')"><div class="room-check-box"></div><span class="room-check-label">Bathroom 3</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'laundry')"><div class="room-check-box"></div><span class="room-check-label">Laundry Room</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'office')"><div class="room-check-box"></div><span class="room-check-label">Office</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'garage')"><div class="room-check-box"></div><span class="room-check-label">Garage</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'patio')"><div class="room-check-box"></div><span class="room-check-label">Patio / Outdoor</span></div>
+    <div class="room-check" onclick="toggleRoom(this, 'other')"><div class="room-check-box"></div><span class="room-check-label">Other</span></div>
+  </div>
+</div>
+
+<!-- ROOM PHOTO SECTIONS (shown when room is checked) -->
+<div class="room-photos-container">
+
+  <div class="room-photo-section" id="section-kitchen">
+    <div class="room-photo-header">Kitchen — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col">
+        <div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div>
+        <div class="photo-slots-sm">
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+        </div>
+      </div>
+      <div class="room-photo-col">
+        <div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div>
+        <div class="photo-slots-sm">
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+          <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div>
+        </div>
+      </div>
     </div>
     <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
   </div>
-  <div class="photo-panel">
-    <div class="photo-panel-header after"><div class="dot-after"></div>After Service — Upload Photos</div>
-    <div class="photo-slots">
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+
+  <div class="room-photo-section" id="section-living">
+    <div class="room-photo-header">Living Room — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
     </div>
     <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
   </div>
+
+  <div class="room-photo-section" id="section-dining">
+    <div class="room-photo-header">Dining Room — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-master">
+    <div class="room-photo-header">Master Bedroom — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-bed2">
+    <div class="room-photo-header">Bedroom 2 — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-bed3">
+    <div class="room-photo-header">Bedroom 3 — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-bed4">
+    <div class="room-photo-header">Bedroom 4 — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-bath1">
+    <div class="room-photo-header">Bathroom 1 — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-bath2">
+    <div class="room-photo-header">Bathroom 2 — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-bath3">
+    <div class="room-photo-header">Bathroom 3 — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-laundry">
+    <div class="room-photo-header">Laundry Room — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-office">
+    <div class="room-photo-header">Office — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-garage">
+    <div class="room-photo-header">Garage — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-patio">
+    <div class="room-photo-header">Patio / Outdoor — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
+  <div class="room-photo-section" id="section-other">
+    <div class="room-photo-header">Other — Before &amp; After</div>
+    <div class="room-photo-body">
+      <div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+      <div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm"><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div><div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add</div></div></div></div>
+    </div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
+  </div>
+
 </div>
 
 <div class="section-header"><div class="section-dot"></div><div class="section-title">Condition Notes</div><div class="section-line"></div></div>
@@ -697,7 +959,7 @@ body { background: white; padding: 0; }
     </div>
   </div>
 </div>
-
+```
 
   </div>
 
@@ -737,6 +999,18 @@ function loadImage(input) {
   reader.readAsDataURL(input.files[0]);
 }
 
+function toggleRoom(el, roomId) {
+  el.classList.toggle('active');
+  var section = document.getElementById('section-' + roomId);
+  if (section) {
+    if (el.classList.contains('active')) {
+      section.classList.add('visible');
+    } else {
+      section.classList.remove('visible');
+    }
+  }
+}
+
 function toggleCheck(el) { el.classList.toggle('checked'); }
 
 var ratingLabels = ['','Needs improvement','Below standard','Meets standard','Above standard','Outstanding'];
@@ -756,6 +1030,10 @@ function clearForm() {
     for (var i = 0; i < inputs.length; i++) inputs[i].value = '';
     var checks = document.querySelectorAll('.check-item');
     for (var i = 0; i < checks.length; i++) checks[i].classList.remove('checked');
+    var rooms = document.querySelectorAll('.room-check');
+    for (var i = 0; i < rooms.length; i++) rooms[i].classList.remove('active');
+    var sections = document.querySelectorAll('.room-photo-section');
+    for (var i = 0; i < sections.length; i++) sections[i].classList.remove('visible');
     var stars = document.querySelectorAll('.star');
     for (var i = 0; i < stars.length; i++) stars[i].classList.remove('lit');
     var slots = document.querySelectorAll('.photo-slot');
