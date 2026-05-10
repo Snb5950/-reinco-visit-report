@@ -981,6 +981,7 @@ body { background: white; padding: 0; }
 
 <script>
 var currentSlot = null;
+document.addEventListener('click', function(e){ if(e.target.classList.contains('timestamp-input') && !e.target.value) e.target.value = new Date().toTimeString().slice(0,5); });
 
 function triggerUpload(slot) {
   currentSlot = slot;
