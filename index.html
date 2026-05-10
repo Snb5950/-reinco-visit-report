@@ -94,7 +94,7 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
 .sig-field { display:flex; align-items:center; gap:8px; border-bottom:1px dashed #E0E0E0; padding-bottom:6px; }
 .sig-field label { font-size:10px; font-weight:bold; color:#666; text-transform:uppercase; width:60px; flex-shrink:0; }
 .sig-field input { border:none; outline:none; font-family:Arial,sans-serif; font-size:13px; color:#1A1A1A; flex:1; background:transparent; }
-.sig-pad-wrap { padding:8px 14px 12px; }
+.sig-pad-wrap { padding:8px 14px 12px; background:#fff; }
 .sig-pad-label { font-size:10px; font-weight:bold; color:#666; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; display:block; }
 .sig-canvas { width:100%; height:100px; border:1px dashed #C9A84C; border-radius:4px; background:#FAFAFA; display:block; touch-action:none; cursor:crosshair; }
 .sig-clear { margin-top:6px; background:transparent; border:1px solid #E0E0E0; border-radius:3px; font-size:10px; color:#666; padding:3px 10px; cursor:pointer; font-family:Arial,sans-serif; }
@@ -165,23 +165,7 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
 
 <div class="room-selector">
   <div class="room-selector-header">Select Rooms Serviced<p>Check each room that applies to this property</p></div>
-  <div class="room-grid">
-    <div class="room-check" onclick="toggleRoom(this,'kitchen')"><div class="room-check-box"></div><span class="room-check-label">Kitchen</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'living')"><div class="room-check-box"></div><span class="room-check-label">Living Room</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'dining')"><div class="room-check-box"></div><span class="room-check-label">Dining Room</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'master')"><div class="room-check-box"></div><span class="room-check-label">Master Bedroom</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'bed2')"><div class="room-check-box"></div><span class="room-check-label">Bedroom 2</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'bed3')"><div class="room-check-box"></div><span class="room-check-label">Bedroom 3</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'bed4')"><div class="room-check-box"></div><span class="room-check-label">Bedroom 4</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'bath1')"><div class="room-check-box"></div><span class="room-check-label">Bathroom 1</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'bath2')"><div class="room-check-box"></div><span class="room-check-label">Bathroom 2</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'bath3')"><div class="room-check-box"></div><span class="room-check-label">Bathroom 3</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'laundry')"><div class="room-check-box"></div><span class="room-check-label">Laundry Room</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'office')"><div class="room-check-box"></div><span class="room-check-label">Office</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'garage')"><div class="room-check-box"></div><span class="room-check-label">Garage</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'patio')"><div class="room-check-box"></div><span class="room-check-label">Patio / Outdoor</span></div>
-    <div class="room-check" onclick="toggleRoom(this,'other')"><div class="room-check-box"></div><span class="room-check-label">Other</span></div>
-  </div>
+  <div class="room-grid" id="roomGrid"></div>
 </div>
 
 <div class="room-photos-container" id="roomPhotos"></div>
@@ -239,8 +223,8 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
     </div>
     <div class="sig-pad-wrap">
       <span class="sig-pad-label">Signature — draw below</span>
-      <canvas class="sig-canvas" id="sig1" width="400" height="100"></canvas>
-      <button class="sig-clear" onclick="clearSig('sig1')">Clear</button>
+      <canvas class="sig-canvas" id="sig1"></canvas>
+      <button class="sig-clear" onclick="clearSig('sig1')">Clear Signature</button>
     </div>
   </div>
   <div class="sig-box">
@@ -251,8 +235,8 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
     </div>
     <div class="sig-pad-wrap">
       <span class="sig-pad-label">Signature — draw below</span>
-      <canvas class="sig-canvas" id="sig2" width="400" height="100"></canvas>
-      <button class="sig-clear" onclick="clearSig('sig2')">Clear</button>
+      <canvas class="sig-canvas" id="sig2"></canvas>
+      <button class="sig-clear" onclick="clearSig('sig2')">Clear Signature</button>
     </div>
   </div>
 </div>
@@ -279,56 +263,73 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
 <script>
 var currentSlot = null;
 
-var rooms = [
-  {id:'kitchen', label:'Kitchen'},
-  {id:'living', label:'Living Room'},
-  {id:'dining', label:'Dining Room'},
-  {id:'master', label:'Master Bedroom'},
-  {id:'bed2', label:'Bedroom 2'},
-  {id:'bed3', label:'Bedroom 3'},
-  {id:'bed4', label:'Bedroom 4'},
-  {id:'bath1', label:'Bathroom 1'},
-  {id:'bath2', label:'Bathroom 2'},
-  {id:'bath3', label:'Bathroom 3'},
-  {id:'laundry', label:'Laundry Room'},
-  {id:'office', label:'Office'},
-  {id:'garage', label:'Garage'},
-  {id:'patio', label:'Patio / Outdoor'},
-  {id:'other', label:'Other'}
+var roomList = [
+  {id:'kitchen',label:'Kitchen'},
+  {id:'living',label:'Living Room'},
+  {id:'dining',label:'Dining Room'},
+  {id:'master',label:'Master Bedroom'},
+  {id:'bed2',label:'Bedroom 2'},
+  {id:'bed3',label:'Bedroom 3'},
+  {id:'bed4',label:'Bedroom 4'},
+  {id:'bath1',label:'Bathroom 1'},
+  {id:'bath2',label:'Bathroom 2'},
+  {id:'bath3',label:'Bathroom 3'},
+  {id:'laundry',label:'Laundry Room'},
+  {id:'office',label:'Office'},
+  {id:'garage',label:'Garage'},
+  {id:'patio',label:'Patio / Outdoor'},
+  {id:'other',label:'Other'}
 ];
 
 function makeSlots() {
   var s = '';
   for (var i=0; i<4; i++) {
-    s += '<div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">&#128247;</div><div class="photo-slot-label">Tap to add</div></div>';
+    s += '<div class="photo-slot"><div class="photo-slot-icon">&#128247;</div><div class="photo-slot-label">Tap to add</div></div>';
   }
   return s;
 }
 
-function makeRoomSection(room) {
-  return '<div class="room-photo-section" id="section-'+room.id+'">'
-    +'<div class="room-photo-header">'+room.label+' &#8212; Before &amp; After</div>'
+// Build room grid and photo sections
+var grid = document.getElementById('roomGrid');
+var photos = document.getElementById('roomPhotos');
+
+for (var i=0; i<roomList.length; i++) {
+  var r = roomList[i];
+
+  // Room checkbox
+  var rc = document.createElement('div');
+  rc.className = 'room-check';
+  rc.setAttribute('data-room', r.id);
+  rc.innerHTML = '<div class="room-check-box"></div><span class="room-check-label">'+r.label+'</span>';
+  rc.addEventListener('click', (function(id){ return function(){ toggleRoom(this, id); }; })(r.id));
+  grid.appendChild(rc);
+
+  // Photo section
+  var sec = document.createElement('div');
+  sec.className = 'room-photo-section';
+  sec.id = 'section-'+r.id;
+  sec.innerHTML = '<div class="room-photo-header">'+r.label+' &#8212; Before &amp; After</div>'
     +'<div class="room-photo-body">'
-    +'<div class="room-photo-col">'
-    +'<div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div>'
-    +'<div class="photo-slots-sm">'+makeSlots()+'</div>'
+    +'<div class="room-photo-col"><div class="room-photo-col-header before"><div class="col-dot-before"></div>Before</div><div class="photo-slots-sm">'+makeSlots()+'</div></div>'
+    +'<div class="room-photo-col"><div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div><div class="photo-slots-sm">'+makeSlots()+'</div></div>'
     +'</div>'
-    +'<div class="room-photo-col">'
-    +'<div class="room-photo-col-header after"><div class="col-dot-after"></div>After</div>'
-    +'<div class="photo-slots-sm">'+makeSlots()+'</div>'
-    +'</div>'
-    +'</div>'
-    +'<div class="photo-timestamp">'
-    +'<span class="timestamp-label">Time Stamped:</span>'
-    +'<input class="timestamp-input" type="time" id="ts-'+room.id+'">'
-    +'<button class="stamp-btn" onclick="stampTime(\'ts-'+room.id+'\')">Stamp Now</button>'
-    +'</div>'
-    +'</div>';
+    +'<div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time" id="ts-'+r.id+'"><button class="stamp-btn" onclick="stampTime(\'ts-'+r.id+'\')">Stamp Now</button></div>';
+  photos.appendChild(sec);
+
+  // Add click to each slot in this section
+  var slots = sec.querySelectorAll('.photo-slot');
+  for (var j=0; j<slots.length; j++) {
+    slots[j].addEventListener('click', (function(slot){ return function(){ triggerUpload(slot); }; })(slots[j]));
+  }
 }
 
-var container = document.getElementById('roomPhotos');
-for (var i=0; i<rooms.length; i++) {
-  container.innerHTML += makeRoomSection(rooms[i]);
+function toggleRoom(el, roomId) {
+  el.classList.toggle('active');
+  var section = document.getElementById('section-'+roomId);
+  if (section) {
+    if (el.classList.contains('active')) section.classList.add('visible');
+    else section.classList.remove('visible');
+  }
 }
 
 function stampTime(inputId) {
@@ -351,17 +352,9 @@ function loadImage(input) {
     if (!img) { img = document.createElement('img'); currentSlot.appendChild(img); }
     img.src = e.target.result;
     currentSlot.classList.add('has-image');
+    input.value = '';
   };
   reader.readAsDataURL(input.files[0]);
-}
-
-function toggleRoom(el, roomId) {
-  el.classList.toggle('active');
-  var section = document.getElementById('section-'+roomId);
-  if (section) {
-    if (el.classList.contains('active')) section.classList.add('visible');
-    else section.classList.remove('visible');
-  }
 }
 
 function toggleCheck(el) { el.classList.toggle('checked'); }
@@ -377,13 +370,12 @@ function setRating(n) {
   document.getElementById('rating-note').textContent = ratingLabels[n];
 }
 
-function clearSig(id) {
-  var c = document.getElementById(id);
-  c.getContext('2d').clearRect(0,0,c.width,c.height);
-}
-
+// Signature pads
 function initSig(id) {
   var c = document.getElementById(id);
+  var rect = c.parentElement.getBoundingClientRect();
+  c.width = c.offsetWidth || 300;
+  c.height = 100;
   var ctx = c.getContext('2d');
   ctx.strokeStyle = '#1A1A1A';
   ctx.lineWidth = 2;
@@ -396,21 +388,32 @@ function initSig(id) {
     var scaleX = c.width / r.width;
     var scaleY = c.height / r.height;
     if (e.touches) {
-      return { x: (e.touches[0].clientX - r.left) * scaleX, y: (e.touches[0].clientY - r.top) * scaleY };
+      return { x:(e.touches[0].clientX-r.left)*scaleX, y:(e.touches[0].clientY-r.top)*scaleY };
     }
-    return { x: (e.clientX - r.left) * scaleX, y: (e.clientY - r.top) * scaleY };
+    return { x:(e.clientX-r.left)*scaleX, y:(e.clientY-r.top)*scaleY };
   }
 
-  c.addEventListener('mousedown', function(e) { drawing=true; var p=getPos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); });
-  c.addEventListener('mousemove', function(e) { if(!drawing) return; var p=getPos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); });
-  c.addEventListener('mouseup', function() { drawing=false; });
-  c.addEventListener('touchstart', function(e) { e.preventDefault(); drawing=true; var p=getPos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); }, {passive:false});
-  c.addEventListener('touchmove', function(e) { e.preventDefault(); if(!drawing) return; var p=getPos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); }, {passive:false});
-  c.addEventListener('touchend', function() { drawing=false; });
+  c.addEventListener('mousedown', function(e){ drawing=true; var p=getPos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); e.preventDefault(); });
+  c.addEventListener('mousemove', function(e){ if(!drawing) return; var p=getPos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); e.preventDefault(); });
+  c.addEventListener('mouseup', function(){ drawing=false; });
+  c.addEventListener('mouseleave', function(){ drawing=false; });
+  c.addEventListener('touchstart', function(e){ e.preventDefault(); drawing=true; var p=getPos(e); ctx.beginPath(); ctx.moveTo(p.x,p.y); }, {passive:false});
+  c.addEventListener('touchmove', function(e){ e.preventDefault(); if(!drawing) return; var p=getPos(e); ctx.lineTo(p.x,p.y); ctx.stroke(); }, {passive:false});
+  c.addEventListener('touchend', function(){ drawing=false; });
 }
 
-initSig('sig1');
-initSig('sig2');
+function clearSig(id) {
+  var c = document.getElementById(id);
+  c.getContext('2d').clearRect(0,0,c.width,c.height);
+}
+
+// Init signature pads after page loads
+window.addEventListener('load', function(){
+  initSig('sig1');
+  initSig('sig2');
+});
+
+function clearForm() {
   if (confirm('Clear all form data and start fresh?')) {
     var inputs = document.querySelectorAll('input[type="text"],input[type="date"],input[type="time"],textarea');
     for (var i=0; i<inputs.length; i++) inputs[i].value = '';
@@ -428,6 +431,8 @@ initSig('sig2');
       var img = slots[i].querySelector('img');
       if (img) img.remove();
     }
+    clearSig('sig1');
+    clearSig('sig2');
     document.getElementById('rating-note').textContent = 'Rate the quality of this visit internally';
   }
 }
