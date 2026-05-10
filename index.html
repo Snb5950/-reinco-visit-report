@@ -36,6 +36,7 @@ padding: 32px 48px;
 display: flex;
 align-items: center;
 justify-content: space-between;
+text-align: left;
 }
 
 .brand {
@@ -338,7 +339,8 @@ transition: all 0.2s;
 
 .check-item:hover { border-color: #007B8A; background: #E0F4F6; }
 .check-item.checked { background: #E0F4F6; border-color: #007B8A; }
-.check-item input[type=“checkbox”] { display: none; }
+.check-item input[type=“checkbox”] { display: none !important; }
+input[type=“file”] { display: none !important; }
 
 .check-box {
 width: 16px;
