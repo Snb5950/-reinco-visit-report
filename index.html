@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reinco Visit Report</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-font-family: Georgia, ‘Times New Roman’, serif;
+font-family: Arial, sans-serif;
 background: #E8F0F1;
 color: #1A1A1A;
 min-height: 100vh;
@@ -36,7 +36,6 @@ padding: 32px 48px;
 display: flex;
 align-items: center;
 justify-content: space-between;
-text-align: left;
 }
 
 .brand {
@@ -54,7 +53,6 @@ color: #C9A84C;
 letter-spacing: 2px;
 margin-top: 6px;
 font-style: italic;
-font-family: Arial, sans-serif;
 }
 
 .header-right { text-align: right; }
@@ -70,14 +68,12 @@ border-radius: 2px;
 text-transform: uppercase;
 margin-bottom: 8px;
 display: inline-block;
-font-family: Arial, sans-serif;
 }
 
 .header-right p {
 color: rgba(255,255,255,0.75);
 font-size: 12px;
 line-height: 1.6;
-font-family: Arial, sans-serif;
 }
 
 .gold-divider {
@@ -85,7 +81,7 @@ height: 3px;
 background: linear-gradient(90deg, #C9A84C, transparent);
 }
 
-.body { padding: 40px 48px; font-family: Arial, sans-serif; }
+.body { padding: 40px 48px; }
 
 .info-grid {
 display: grid;
@@ -124,7 +120,6 @@ background: #ffffff;
 font-size: 11px;
 font-weight: bold;
 color: #007B8A;
-letter-spacing: 0.5px;
 text-transform: uppercase;
 width: 120px;
 flex-shrink: 0;
@@ -140,6 +135,7 @@ flex: 1;
 padding: 8px 0;
 background: transparent;
 border-bottom: 1px dashed #E0E0E0;
+width: 100%;
 }
 
 .field-input:focus { border-bottom-color: #007B8A; }
@@ -211,7 +207,7 @@ border-bottom: 2px solid #10B981;
 }
 
 .dot-before { width:8px; height:8px; border-radius:50%; background:#F59E0B; flex-shrink:0; }
-.dot-after { width:8px; height:8px; border-radius:50%; background:#10B981; flex-shrink:0; }
+.dot-after  { width:8px; height:8px; border-radius:50%; background:#10B981; flex-shrink:0; }
 
 .photo-slots {
 padding: 12px;
@@ -234,14 +230,7 @@ position: relative;
 overflow: hidden;
 }
 
-.photo-slot input[type=“file”] {
-position: absolute;
-inset: 0;
-opacity: 0;
-cursor: pointer;
-width: 100%;
-height: 100%;
-}
+.photo-slot:hover { border-color: #007B8A; }
 
 .photo-slot img {
 position: absolute;
@@ -251,15 +240,8 @@ height: 100%;
 object-fit: cover;
 }
 
-.photo-slot-label {
-font-size: 10px;
-color: #666;
-text-align: center;
-pointer-events: none;
-font-family: Arial, sans-serif;
-}
-
-.photo-slot-icon { font-size: 20px; margin-bottom: 4px; pointer-events: none; }
+.photo-slot-icon { font-size: 20px; margin-bottom: 4px; }
+.photo-slot-label { font-size: 10px; color: #666; text-align: center; }
 .photo-slot.has-image .photo-slot-label,
 .photo-slot.has-image .photo-slot-icon { display: none; }
 
@@ -272,10 +254,17 @@ background: #F5F5F5;
 display: flex;
 align-items: center;
 justify-content: space-between;
-font-family: Arial, sans-serif;
 }
 
 .timestamp-label { font-weight: bold; color: #007B8A; }
+
+.timestamp-input {
+border: none;
+outline: none;
+font-size: 12px;
+color: #666;
+background: transparent;
+}
 
 .notes-grid {
 display: grid;
@@ -335,24 +324,23 @@ border-radius: 4px;
 cursor: pointer;
 border: 1px solid transparent;
 transition: all 0.2s;
+user-select: none;
 }
 
 .check-item:hover { border-color: #007B8A; background: #E0F4F6; }
 .check-item.checked { background: #E0F4F6; border-color: #007B8A; }
-.check-item input[type=“checkbox”] { display: none !important; }
-input[type=“file”] { display: none !important; }
 
 .check-box {
 width: 16px;
 height: 16px;
-border: 2px solid #E0E0E0;
+border: 2px solid #ccc;
 border-radius: 2px;
 flex-shrink: 0;
 display: flex;
 align-items: center;
 justify-content: center;
-transition: all 0.2s;
 background: #ffffff;
+transition: all 0.2s;
 }
 
 .check-item.checked .check-box {
@@ -487,7 +475,6 @@ font-size: 10px;
 font-weight: bold;
 color: #666;
 text-transform: uppercase;
-letter-spacing: 0.5px;
 width: 60px;
 flex-shrink: 0;
 }
@@ -552,14 +539,12 @@ letter-spacing: 4px;
 font-size: 11px;
 color: #C9A84C;
 font-style: italic;
-font-family: Arial, sans-serif;
 }
 
 .footer-right {
 font-size: 11px;
 color: rgba(255,255,255,0.5);
 text-align: right;
-font-family: Arial, sans-serif;
 }
 
 @media print {
@@ -570,6 +555,7 @@ body { background: white; padding: 0; }
 
 @media (max-width: 600px) {
 .header { flex-direction: column; gap: 16px; text-align: center; padding: 24px; }
+.header-right { text-align: center; }
 .body { padding: 24px; }
 .info-grid { grid-template-columns: 1fr; }
 .info-col:first-child { border-right: none; border-bottom: 1px solid #E0E0E0; }
@@ -607,7 +593,7 @@ body { background: white; padding: 0; }
     <div class="info-col-header">Property &amp; Visit Details</div>
     <div class="field-row"><span class="field-label">Address</span><input class="field-input" type="text" placeholder="Property address"></div>
     <div class="field-row"><span class="field-label">Unit</span><input class="field-input" type="text" placeholder="Unit or suite number"></div>
-    <div class="field-row"><span class="field-label">Service Type</span><input class="field-input" type="text" placeholder="e.g. Turnover cleaning, Staging"></div>
+    <div class="field-row"><span class="field-label">Service Type</span><input class="field-input" type="text" placeholder="e.g. Turnover cleaning"></div>
     <div class="field-row"><span class="field-label">Visit Date</span><input class="field-input" type="date"></div>
   </div>
   <div class="info-col">
@@ -619,32 +605,28 @@ body { background: white; padding: 0; }
   </div>
 </div>
 
-<div class="section-header">
-  <div class="section-dot"></div>
-  <div class="section-title">Before Photos</div>
-  <div class="section-line"></div>
-</div>
+<div class="section-header"><div class="section-dot"></div><div class="section-title">Before Photos</div><div class="section-line"></div></div>
 
 <div class="photo-section">
   <div class="photo-panel">
     <div class="photo-panel-header before"><div class="dot-before"></div>Before Service — Upload Photos</div>
     <div class="photo-slots">
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
     </div>
-    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input type="time" style="border:none;outline:none;font-size:12px;color:#666;background:transparent;"></div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
   </div>
   <div class="photo-panel">
     <div class="photo-panel-header after"><div class="dot-after"></div>After Service — Upload Photos</div>
     <div class="photo-slots">
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
-      <div class="photo-slot" onclick="this.querySelector('input').click()"><input type="file" accept="image/*" onchange="loadImage(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
+      <div class="photo-slot" onclick="triggerUpload(this)"><div class="photo-slot-icon">📷</div><div class="photo-slot-label">Tap to add photo</div></div>
     </div>
-    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input type="time" style="border:none;outline:none;font-size:12px;color:#666;background:transparent;"></div>
+    <div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time"></div>
   </div>
 </div>
 
@@ -658,24 +640,24 @@ body { background: white; padding: 0; }
 <div class="section-header"><div class="section-dot"></div><div class="section-title">Service Checklist Completed</div><div class="section-line"></div></div>
 
 <div class="checklist">
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Kitchen cleaned</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Bathrooms cleaned</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Bedrooms cleaned</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Living areas cleaned</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Floors mopped or vacuumed</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Linens changed</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Beds made</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Trash removed</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Supplies restocked</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Toiletries stocked</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Paper goods stocked</span></label>
-  <label class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div class="check-box"></div><span class="check-label">Property locked and secured</span></label>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Kitchen cleaned</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Bathrooms cleaned</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Bedrooms cleaned</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Living areas cleaned</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Floors mopped or vacuumed</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Linens changed</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Beds made</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Trash removed</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Supplies restocked</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Toiletries stocked</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Paper goods stocked</span></div>
+  <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Property locked and secured</span></div>
 </div>
 
 <div class="section-header"><div class="section-dot"></div><div class="section-title">Issues, Damage or Maintenance Flags</div><div class="section-line"></div></div>
 
 <div class="flags-section">
-  <div class="flags-header">⚠ Flag any damage, maintenance issues, or concerns for the owner's attention</div>
+  <div class="flags-header">&#9888; Flag any damage, maintenance issues, or concerns for the owner's attention</div>
   <textarea placeholder="Describe any damage found, items needing repair, missing items, or unusual findings. Write None if no issues were found..."></textarea>
 </div>
 
@@ -685,11 +667,11 @@ body { background: white; padding: 0; }
   <div class="rating-top">
     <span class="rating-label">Service Quality Score</span>
     <div class="stars">
-      <span class="star" onclick="setRating(1)">★</span>
-      <span class="star" onclick="setRating(2)">★</span>
-      <span class="star" onclick="setRating(3)">★</span>
-      <span class="star" onclick="setRating(4)">★</span>
-      <span class="star" onclick="setRating(5)">★</span>
+      <span class="star" onclick="setRating(1)">&#9733;</span>
+      <span class="star" onclick="setRating(2)">&#9733;</span>
+      <span class="star" onclick="setRating(3)">&#9733;</span>
+      <span class="star" onclick="setRating(4)">&#9733;</span>
+      <span class="star" onclick="setRating(5)">&#9733;</span>
     </div>
   </div>
   <span class="rating-note" id="rating-note">Rate the quality of this visit internally</span>
@@ -733,43 +715,58 @@ body { background: white; padding: 0; }
   </div>
 </div>
 
+<input type="file" id="hiddenFileInput" accept="image/*" style="display:none" onchange="loadImage(this)">
+
 <script>
-  function loadImage(input) {
-    const slot = input.parentElement;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        let img = slot.querySelector('img');
-        if (!img) { img = document.createElement('img'); slot.appendChild(img); }
-        img.src = e.target.result;
-        slot.classList.add('has-image');
-      };
-      reader.readAsDataURL(input.files[0]);
+var currentSlot = null;
+
+function triggerUpload(slot) {
+  currentSlot = slot;
+  document.getElementById('hiddenFileInput').click();
+}
+
+function loadImage(input) {
+  if (!currentSlot || !input.files || !input.files[0]) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = currentSlot.querySelector('img');
+    if (!img) { img = document.createElement('img'); currentSlot.appendChild(img); }
+    img.src = e.target.result;
+    currentSlot.classList.add('has-image');
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function toggleCheck(el) { el.classList.toggle('checked'); }
+
+var ratingLabels = ['','Needs improvement','Below standard','Meets standard','Above standard','Outstanding'];
+
+function setRating(n) {
+  var stars = document.querySelectorAll('.star');
+  for (var i = 0; i < stars.length; i++) {
+    if (i < n) stars[i].classList.add('lit');
+    else stars[i].classList.remove('lit');
+  }
+  document.getElementById('rating-note').textContent = ratingLabels[n];
+}
+
+function clearForm() {
+  if (confirm('Clear all form data and start fresh?')) {
+    var inputs = document.querySelectorAll('input[type="text"],input[type="date"],input[type="time"],textarea');
+    for (var i = 0; i < inputs.length; i++) inputs[i].value = '';
+    var checks = document.querySelectorAll('.check-item');
+    for (var i = 0; i < checks.length; i++) checks[i].classList.remove('checked');
+    var stars = document.querySelectorAll('.star');
+    for (var i = 0; i < stars.length; i++) stars[i].classList.remove('lit');
+    var slots = document.querySelectorAll('.photo-slot');
+    for (var i = 0; i < slots.length; i++) {
+      slots[i].classList.remove('has-image');
+      var img = slots[i].querySelector('img');
+      if (img) img.remove();
     }
+    document.getElementById('rating-note').textContent = 'Rate the quality of this visit internally';
   }
-
-  function toggleCheck(el) { el.classList.toggle('checked'); }
-
-  const ratingLabels = ['','Needs improvement','Below standard','Meets standard','Above standard','Outstanding'];
-
-  function setRating(n) {
-    document.querySelectorAll('.star').forEach((s,i) => s.classList.toggle('lit', i < n));
-    document.getElementById('rating-note').textContent = ratingLabels[n];
-  }
-
-  function clearForm() {
-    if (confirm('Clear all form data and start fresh?')) {
-      document.querySelectorAll('input[type="text"],input[type="date"],input[type="time"],textarea').forEach(el => el.value = '');
-      document.querySelectorAll('.check-item').forEach(el => el.classList.remove('checked'));
-      document.querySelectorAll('.star').forEach(s => s.classList.remove('lit'));
-      document.querySelectorAll('.photo-slot').forEach(slot => {
-        slot.classList.remove('has-image');
-        const img = slot.querySelector('img');
-        if (img) img.remove();
-      });
-      document.getElementById('rating-note').textContent = 'Rate the quality of this visit internally';
-    }
-  }
+}
 </script>
 
 </body>
