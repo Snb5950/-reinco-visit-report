@@ -42,19 +42,19 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
 .room-check.active .room-check-box::after { content:'✓'; font-size:10px; color:white; font-weight:bold; }
 .room-check-label { font-size:12px; color:#1A1A1A; line-height:1.3; }
 .room-photos-container { margin-bottom:32px; }
-.room-photo-section { border:1px solid #E0E0E0; border-radius:4px; overflow:hidden; margin-bottom:16px; display:none; }
+.room-photo-section { border:1px solid #E0E0E0; border-radius:4px; overflow:hidden; margin-bottom:16px; display:none; page-break-inside:avoid; break-inside:avoid; }
 .room-photo-section.visible { display:block; }
 .room-photo-header { background:#007B8A; color:#fff; font-size:11px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase; padding:10px 16px; border-bottom:2px solid #C9A84C; }
 .room-photo-body { display:grid; grid-template-columns:1fr 1fr; }
-.room-photo-col { padding:12px; }
+.room-photo-col { padding:12px; page-break-inside:avoid; break-inside:avoid; }
 .room-photo-col:first-child { border-right:1px solid #E0E0E0; }
 .room-photo-col-header { font-size:10px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; padding:6px 0 10px 0; display:flex; align-items:center; gap:6px; }
 .room-photo-col-header.before { color:#B45309; }
 .room-photo-col-header.after { color:#065F46; }
 .col-dot-before { width:7px; height:7px; border-radius:50%; background:#F59E0B; flex-shrink:0; }
 .col-dot-after { width:7px; height:7px; border-radius:50%; background:#10B981; flex-shrink:0; }
-.photo-slots-sm { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-.photo-slot { aspect-ratio:4/3; background:#F5F5F5; border:2px dashed #E0E0E0; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; position:relative; overflow:hidden; }
+.photo-slots-sm { display:grid; grid-template-columns:1fr 1fr; gap:6px; page-break-inside:avoid; break-inside:avoid; }
+.photo-slot { aspect-ratio:4/3; background:#F5F5F5; border:2px dashed #E0E0E0; border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; position:relative; overflow:hidden; page-break-inside:avoid; break-inside:avoid; }
 .photo-slot:hover { border-color:#007B8A; }
 .photo-slot img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 .photo-slot-icon { font-size:16px; margin-bottom:2px; }
@@ -65,7 +65,7 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
 .timestamp-input { border:none; outline:none; font-size:12px; color:#666; background:transparent; flex:1; }
 .stamp-btn { background:#007B8A; color:#fff; border:none; border-radius:3px; font-size:10px; font-weight:bold; letter-spacing:0.5px; padding:4px 8px; cursor:pointer; white-space:nowrap; flex-shrink:0; }
 .stamp-btn:active { background:#005F6B; }
-.notes-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px; }
+.notes-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px; page-break-inside:avoid; break-inside:avoid; }
 .notes-box { border:1px solid #E0E0E0; border-radius:4px; overflow:hidden; display:flex; flex-direction:column; }
 .notes-box-header { padding:8px 14px; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#fff; background:#007B8A; border-bottom:2px solid #C9A84C; }
 .notes-box textarea { width:100%; border:none; outline:none; font-family:Arial,sans-serif; font-size:13px; color:#1A1A1A; padding:12px 14px; resize:none; min-height:140px; background:#fff; line-height:1.6; flex:1; }
@@ -77,24 +77,24 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
 .check-item.checked .check-box { background:#007B8A; border-color:#007B8A; }
 .check-item.checked .check-box::after { content:'✓'; font-size:10px; color:white; font-weight:bold; }
 .check-label { font-size:12px; color:#1A1A1A; line-height:1.3; }
-.flags-section { border:1px solid #FEE2E2; border-radius:4px; overflow:hidden; margin-bottom:32px; }
+.flags-section { border:1px solid #FEE2E2; border-radius:4px; overflow:hidden; margin-bottom:32px; page-break-inside:avoid; break-inside:avoid; }
 .flags-header { background:#FEF2F2; border-bottom:2px solid #FCA5A5; padding:10px 16px; font-size:11px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#B91C1C; }
 .flags-section textarea { width:100%; border:none; outline:none; font-family:Arial,sans-serif; font-size:13px; color:#1A1A1A; padding:16px 18px; resize:vertical; min-height:160px; background:#fff; line-height:1.8; display:block; }
-.rating-row { display:flex; flex-direction:column; gap:12px; margin-bottom:32px; padding:20px 24px; background:#FBF4E3; border:2px solid #C9A84C; border-radius:4px; }
+.rating-row { display:flex; flex-direction:column; gap:12px; margin-bottom:32px; padding:20px 24px; background:#FBF4E3; border:2px solid #C9A84C; border-radius:4px; page-break-inside:avoid; break-inside:avoid; }
 .rating-top { display:flex; align-items:center; gap:16px; }
 .rating-label { font-size:12px; font-weight:bold; color:#1A1A1A; white-space:nowrap; }
 .stars { display:flex; gap:6px; }
 .star { font-size:28px; cursor:pointer; color:#D1D5DB; transition:color 0.15s; line-height:1; }
 .star.lit { color:#C9A84C; }
 .rating-note { font-size:12px; color:#666; font-style:italic; padding-left:12px; border-left:2px solid #C9A84C; }
-.sig-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:32px; }
-.sig-box { border:1px solid #E0E0E0; border-radius:4px; overflow:hidden; }
+.sig-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:32px; page-break-inside:avoid; break-inside:avoid; }
+.sig-box { border:1px solid #E0E0E0; border-radius:4px; overflow:hidden; page-break-inside:avoid; break-inside:avoid; }
 .sig-box-header { background:#007B8A; color:#fff; font-size:10px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase; padding:8px 14px; border-bottom:2px solid #C9A84C; }
 .sig-box-body { padding:12px 14px; display:flex; flex-direction:column; gap:8px; background:#fff; }
 .sig-field { display:flex; align-items:center; gap:8px; border-bottom:1px dashed #E0E0E0; padding-bottom:6px; }
 .sig-field label { font-size:10px; font-weight:bold; color:#666; text-transform:uppercase; width:60px; flex-shrink:0; }
 .sig-field input { border:none; outline:none; font-family:Arial,sans-serif; font-size:13px; color:#1A1A1A; flex:1; background:transparent; }
-.sig-pad-wrap { padding:8px 14px 12px; background:#fff; }
+.sig-pad-wrap { padding:8px 14px 12px; background:#fff; page-break-inside:avoid; break-inside:avoid; }
 .sig-pad-label { font-size:10px; font-weight:bold; color:#666; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; display:block; }
 .sig-canvas { width:100%; height:100px; border:1px dashed #C9A84C; border-radius:4px; background:#FAFAFA; display:block; touch-action:none; cursor:crosshair; }
 .sig-clear { margin-top:6px; background:transparent; border:1px solid #E0E0E0; border-radius:3px; font-size:10px; color:#666; padding:3px 10px; cursor:pointer; font-family:Arial,sans-serif; }
@@ -109,23 +109,45 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
 .footer-brand { font-family:Georgia,serif; font-size:20px; font-weight:bold; color:#fff; letter-spacing:4px; }
 .footer-tagline { font-size:11px; color:#C9A84C; font-style:italic; }
 .footer-right { font-size:11px; color:rgba(255,255,255,0.5); text-align:right; }
-@media print { body { background:white; padding:0; } .page { box-shadow:none; max-width:100%; } .actions { display:none; } }
+
+@media print {
+body { background:white; padding:0; }
+.page { box-shadow:none; max-width:100%; }
+.actions { display:none; }
+.room-photo-section { page-break-inside:avoid; break-inside:avoid; }
+.room-photo-col { page-break-inside:avoid; break-inside:avoid; }
+.photo-slots-sm { page-break-inside:avoid; break-inside:avoid; }
+.photo-slot { page-break-inside:avoid; break-inside:avoid; }
+.sig-grid { page-break-inside:avoid; break-inside:avoid; }
+.sig-box { page-break-inside:avoid; break-inside:avoid; }
+.sig-pad-wrap { page-break-inside:avoid; break-inside:avoid; }
+.notes-grid { page-break-inside:avoid; break-inside:avoid; }
+.flags-section { page-break-inside:avoid; break-inside:avoid; }
+.rating-row { page-break-inside:avoid; break-inside:avoid; }
+.room-photo-section.visible { page-break-before:always; break-before:always; }
+.room-photo-section.visible:first-of-type { page-break-before:avoid; break-before:avoid; }
+.header { page-break-after:avoid; break-after:avoid; }
+.footer { page-break-before:avoid; break-before:avoid; }
+.section-header { page-break-after:avoid; break-after:avoid; }
+}
+
 @media (max-width:600px) {
-  .header { flex-direction:column; gap:16px; text-align:center; padding:24px; }
-  .header-right { text-align:center; }
-  .body { padding:24px; }
-  .info-grid { grid-template-columns:1fr; }
-  .info-col:first-child { border-right:none; border-bottom:1px solid #E0E0E0; }
-  .room-grid { grid-template-columns:1fr 1fr; }
-  .room-photo-body { grid-template-columns:1fr; }
-  .room-photo-col:first-child { border-right:none; border-bottom:1px solid #E0E0E0; }
-  .notes-grid { grid-template-columns:1fr; }
-  .checklist { grid-template-columns:1fr 1fr; }
-  .sig-grid { grid-template-columns:1fr; }
-  .actions { padding:16px 24px; flex-wrap:wrap; }
-  .footer { flex-direction:column; gap:8px; text-align:center; padding:16px 24px; }
+.header { flex-direction:column; gap:16px; text-align:center; padding:24px; }
+.header-right { text-align:center; }
+.body { padding:24px; }
+.info-grid { grid-template-columns:1fr; }
+.info-col:first-child { border-right:none; border-bottom:1px solid #E0E0E0; }
+.room-grid { grid-template-columns:1fr 1fr; }
+.room-photo-body { grid-template-columns:1fr; }
+.room-photo-col:first-child { border-right:none; border-bottom:1px solid #E0E0E0; }
+.notes-grid { grid-template-columns:1fr; }
+.checklist { grid-template-columns:1fr 1fr; }
+.sig-grid { grid-template-columns:1fr; }
+.actions { padding:16px 24px; flex-wrap:wrap; }
+.footer { flex-direction:column; gap:8px; text-align:center; padding:16px 24px; }
 }
 </style>
+
 </head>
 <body>
 <div class="page">
@@ -143,7 +165,7 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
   <div class="gold-divider"></div>
   <div class="body">
 
-
+```
 <div class="info-grid">
   <div class="info-col">
     <div class="info-col-header">Property &amp; Visit Details</div>
@@ -240,7 +262,7 @@ body { font-family:Arial,sans-serif; background:#E8F0F1; color:#1A1A1A; min-heig
     </div>
   </div>
 </div>
-
+```
 
   </div>
 
@@ -289,14 +311,11 @@ function makeSlots() {
   return s;
 }
 
-// Build room grid and photo sections
 var grid = document.getElementById('roomGrid');
 var photos = document.getElementById('roomPhotos');
 
 for (var i=0; i<roomList.length; i++) {
   var r = roomList[i];
-
-  // Room checkbox
   var rc = document.createElement('div');
   rc.className = 'room-check';
   rc.setAttribute('data-room', r.id);
@@ -304,7 +323,6 @@ for (var i=0; i<roomList.length; i++) {
   rc.addEventListener('click', (function(id){ return function(){ toggleRoom(this, id); }; })(r.id));
   grid.appendChild(rc);
 
-  // Photo section
   var sec = document.createElement('div');
   sec.className = 'room-photo-section';
   sec.id = 'section-'+r.id;
@@ -316,7 +334,6 @@ for (var i=0; i<roomList.length; i++) {
     +'<div class="photo-timestamp"><span class="timestamp-label">Time Stamped:</span><input class="timestamp-input" type="time" id="ts-'+r.id+'"><button class="stamp-btn" onclick="stampTime(\'ts-'+r.id+'\')">Stamp Now</button></div>';
   photos.appendChild(sec);
 
-  // Add click to each slot in this section
   var slots = sec.querySelectorAll('.photo-slot');
   for (var j=0; j<slots.length; j++) {
     slots[j].addEventListener('click', (function(slot){ return function(){ triggerUpload(slot); }; })(slots[j]));
@@ -370,10 +387,8 @@ function setRating(n) {
   document.getElementById('rating-note').textContent = ratingLabels[n];
 }
 
-// Signature pads
 function initSig(id) {
   var c = document.getElementById(id);
-  var rect = c.parentElement.getBoundingClientRect();
   c.width = c.offsetWidth || 300;
   c.height = 100;
   var ctx = c.getContext('2d');
@@ -407,7 +422,6 @@ function clearSig(id) {
   c.getContext('2d').clearRect(0,0,c.width,c.height);
 }
 
-// Init signature pads after page loads
 window.addEventListener('load', function(){
   initSig('sig1');
   initSig('sig2');
